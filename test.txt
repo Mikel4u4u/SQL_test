@@ -1,0 +1,48 @@
+À)
+SELECT AVG(price) as avg_price FROM purchases
+JOIN users 
+ON purchases.userid = users.user_id
+JOIN items
+ON purchases.itemid = items.itemid
+WHERE users.age BETWEEN 18 AND 25 
+UNION
+SELECT AVG(price) as avg_price FROM purchases
+JOIN users 
+ON purchases.userid = users.user_id
+JOIN items
+ON purchases.itemid = items.itemid
+WHERE users.age BETWEEN 26 AND 30
+
+
+Á)
+SELECT EXTRACT(MONTH FROM purchases.date) as max_month FROM purchases
+JOIN users 
+ON purchases.userid = users.user_id
+JOIN items
+ON purchases.itemid = items.itemid
+WHERE users.age >= 35
+GROUP BY max_month
+ORDER BY SUM(items.price) DESC
+LIMIT 1
+
+Â)
+SELECT items.itemid FROM purchases
+JOIN items
+ON purchases.itemid = items.itemid
+WHERE EXTRACT(YEAR FROM purchases.date)  = 
+(SELECT MAX(EXTRACT(YEAR FROM purchases.date)) FROM purchases )
+GROUP BY items.itemid
+ORDER BY SUM(items.price) DESC
+LIMIT 1
+
+Ã)
+SELECT items.itemid, SUM(items.price)/
+(SELECT SUM(items.price) from  purchases
+JOIN items
+ON purchases.itemid = items.itemid) * 100 AS Percent_price
+FROM purchases
+JOIN items
+ON purchases.itemid = items.itemid
+GROUP BY items.itemid
+ORDER BY SUM(items.price) DESC
+LIMIT 3
