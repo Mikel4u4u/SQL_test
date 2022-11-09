@@ -1,0 +1,45 @@
+﻿CREATE TABLE Users (
+	user_id INT PRIMARY KEY,
+	age INT
+);
+
+CREATE TABLE Items (
+	itemId INT PRIMARY KEY,
+	price FLOAT
+);
+
+CREATE TABLE Purchases (
+
+    purchaseId INT PRIMARY KEY,
+    userId INT REFERENCES users (user_Id),
+    itemId INT REFERENCES items (itemid),
+    date DATE
+
+);
+
+INSERT INTO users (user_id,age) VALUES 
+('1', '10'),
+('2', '20'),
+('3', '30'),
+('4', '40'),
+('5', '50')
+;
+
+INSERT INTO items (itemid,price) VALUES 
+('1','15'),
+('2','20'),
+('3','30'),
+('4','35')
+;
+
+INSERT INTO purchases (purchaseid,userid,itemid,date) VALUES 
+('1','1','1','01.04.2000'),
+('2','2','2','01.07.2001'),
+('3','3','2','01.04.2022'),
+('4','4','1','01.04.2022'),
+('5','5','2','01.04.2000'),
+('6','2','3','01.05.2001'),
+('7','5','4','02.07.2003'),
+('8','3','4','07.06.2002'),
+('9','2','4','02.03.2007'),
+;
