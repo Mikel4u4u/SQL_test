@@ -1,4 +1,4 @@
-¿)
+–ê)
 SELECT AVG(price) as avg_price FROM purchases
 JOIN users 
 ON purchases.userid = users.user_id
@@ -14,7 +14,7 @@ ON purchases.itemid = items.itemid
 WHERE users.age BETWEEN 26 AND 30
 
 
-¡)
+–ë)
 SELECT EXTRACT(MONTH FROM purchases.date) as max_month FROM purchases
 JOIN users 
 ON purchases.userid = users.user_id
@@ -25,7 +25,7 @@ GROUP BY max_month
 ORDER BY SUM(items.price) DESC
 LIMIT 1
 
-¬)
+–í)
 SELECT items.itemid FROM purchases
 JOIN items
 ON purchases.itemid = items.itemid
@@ -35,7 +35,7 @@ GROUP BY items.itemid
 ORDER BY SUM(items.price) DESC
 LIMIT 1
 
-√)
+–ì)
 SELECT items.itemid, SUM(items.price)/
 (SELECT SUM(items.price) from  purchases
 JOIN items
